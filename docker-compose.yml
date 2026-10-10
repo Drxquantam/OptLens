@@ -1,0 +1,26 @@
+# OptLens local stack.
+#
+# The API deliberately runs on the host (not Docker-in-Docker): it needs the
+# docker CLI to start one throwaway sandbox container per job. Compose builds
+# the sandbox image and serves the web UI; see README "Quick start".
+#
+#   docker compose --profile build build   # build sandbox + web images
+#   docker compose up -d web               # UI on http://localhost:5173
+
+services:
+  # Image only: containers from it are started by the API, one per job.
+  sandbox:
+    build: ./sandbox
+    image: optlens-sandbox:latest
+    profiles: ["build"]
+
+  web:
+    build: ./frontend
+    image: optlens-web:latest
+    ports:
+      - "127.0.0.1:5173:80"
+    environment:
+      API_UPSTREAM: http://host.docker.internal:8000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

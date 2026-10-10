@@ -1,0 +1,248 @@
+{
+ "runner_version": "1",
+ "toolchain": {
+  "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "clang": "Ubuntu clang version 18.1.3 (1ubuntu1)"
+ },
+ "limits": {
+  "compile_timeout_s": 15.0,
+  "run_timeout_s": 2.0,
+  "sanitizer_timeout_s": 8.0,
+  "output_cap_bytes": 16384,
+  "file_size_bytes": 1048576,
+  "compile_file_size_bytes": 50331648,
+  "asm_max_lines": 4000,
+  "remarks_cap_bytes": 262144,
+  "reruns": 3
+ },
+ "builds": [
+  {
+   "compiler": "gcc",
+   "opt": "O0",
+   "compile": {
+    "ok": true,
+    "command": "gcc -O0 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_gcc_O0 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 455.19,
+    "stderr": ""
+   },
+   "asm": "\t.file\t\"prog.c\"\n\t.intel_syntax noprefix\n\t.text\n\t.type\tfnv1a, @function\nfnv1a:\n\tendbr64\n\tpush\trbp\n\tmov\trbp, rsp\n\tsub\trsp, 32\n\tmov\tQWORD PTR -24[rbp], rdi\n\tmov\tDWORD PTR -12[rbp], -2128831035\n\tmov\tQWORD PTR -8[rbp], 0\n\tjmp\t.L2\n.L3:\n\tmov\trdx, QWORD PTR -24[rbp]\n\tmov\trax, QWORD PTR -8[rbp]\n\tadd\trax, rdx\n\tmovzx\teax, BYTE PTR [rax]\n\tmovzx\teax, al\n\txor\tDWORD PTR -12[rbp], eax\n\tmov\teax, DWORD PTR -12[rbp]\n\timul\teax, eax, 16777619\n\tmov\tDWORD PTR -12[rbp], eax\n\tadd\tQWORD PTR -8[rbp], 1\n.L2:\n\tmov\trax, QWORD PTR -24[rbp]\n\tmov\trdi, rax\n\tcall\tstrlen@PLT\n\tcmp\tQWORD PTR -8[rbp], rax\n\tjb\t.L3\n\tmov\teax, DWORD PTR -12[rbp]\n\tleave\n\tret\n\t.size\tfnv1a, .-fnv1a\n\t.type\tcollatz_steps, @function\ncollatz_steps:\n\tendbr64\n\tpush\trbp\n\tmov\trbp, rsp\n\tmov\tQWORD PTR -24[rbp], rdi\n\tmov\tDWORD PTR -4[rbp], 0\n\tjmp\t.L6\n.L9:\n\tmov\trax, QWORD PTR -24[rbp]\n\tand\teax, 1\n\ttest\trax, rax\n\tjne\t.L7\n\tmov\trax, QWORD PTR -24[rbp]\n\tshr\trax\n\tjmp\t.L8\n.L7:\n\tmov\trdx, QWORD PTR -24[rbp]\n\tmov\trax, rdx\n\tadd\trax, rax\n\tadd\trax, rdx\n\tadd\trax, 1\n.L8:\n\tmov\tQWORD PTR -24[rbp], rax\n\tadd\tDWORD PTR -4[rbp], 1\n.L6:\n\tcmp\tQWORD PTR -24[rbp], 1\n\tjne\t.L9\n\tmov\teax, DWORD PTR -4[rbp]\n\tpop\trbp\n\tret\n\t.size\tcollatz_steps, .-collatz_steps\n\t.section\t.rodata\n.LC0:\n\t.string\t\"\\n\"\n.LC1:\n\t.string\t\"fnv1a(\\\"%s\\\") = %08x\\n\"\n\t.align 8\n.LC2:\n\t.string\t\"longest Collatz chain below 10000: %llu (%d steps)\\n\"\n\t.text\n\t.globl\tmain\n\t.type\tmain, @function\nmain:\n\tendbr64\n\tpush\trbp\n\tmov\trbp, rsp\n\tsub\trsp, 304\n\tmov\trax, QWORD PTR fs:40\n\tmov\tQWORD PTR -8[rbp], rax\n\txor\teax, eax\n\tmov\tQWORD PTR -272[rbp], 0\n\tmov\tQWORD PTR -264[rbp], 0\n\tmov\tQWORD PTR -256[rbp], 0\n\tmov\tQWORD PTR -248[rbp], 0\n\tmov\tQWORD PTR -240[rbp], 0\n\tmov\tQWORD PTR -232[rbp], 0\n\tmov\tQWORD PTR -224[rbp], 0\n\tmov\tQWORD PTR -216[rbp], 0\n\tmov\tQWORD PTR -208[rbp], 0\n\tmov\tQWORD PTR -200[rbp], 0\n\tmov\tQWORD PTR -192[rbp], 0\n\tmov\tQWORD PTR -184[rbp], 0\n\tmov\tQWORD PTR -176[rbp], 0\n\tmov\tQWORD PTR -168[rbp], 0\n\tmov\tQWORD PTR -160[rbp], 0\n\tmov\tQWORD PTR -152[rbp], 0\n\tmov\tQWORD PTR -144[rbp], 0\n\tmov\tQWORD PTR -136[rbp], 0\n\tmov\tQWORD PTR -128[rbp], 0\n\tmov\tQWORD PTR -120[rbp], 0\n\tmov\tQWORD PTR -112[rbp], 0\n\tmov\tQWORD PTR -104[rbp], 0\n\tmov\tQWORD PTR -96[rbp], 0\n\tmov\tQWORD PTR -88[rbp], 0\n\tmov\tQWORD PTR -80[rbp], 0\n\tmov\tQWORD PTR -72[rbp], 0\n\tmov\tQWORD PTR -64[rbp], 0\n\tmov\tQWORD PTR -56[rbp], 0\n\tmov\tQWORD PTR -48[rbp], 0\n\tmov\tQWORD PTR -40[rbp], 0\n\tmov\tQWORD PTR -32[rbp], 0\n\tmov\tQWORD PTR -24[rbp], 0\n\tmov\trdx, QWORD PTR stdin[rip]\n\tlea\trax, -272[rbp]\n\tmov\tesi, 256\n\tmov\trdi, rax\n\tcall\tfgets@PLT\n\ttest\trax, rax\n\tjne\t.L12\n\tlea\trax, -272[rbp]\n\tmovabs\trcx, 32491004212047983\n\tmov\tQWORD PTR [rax], rcx\n.L12:\n\tlea\trax, -272[rbp]\n\tlea\trdx, .LC0[rip]\n\tmov\trsi, rdx\n\tmov\trdi, rax\n\tcall\tstrcspn@PLT\n\tmov\tBYTE PTR -272[rbp+rax], 0\n\tlea\trax, -272[rbp]\n\tmov\trdi, rax\n\tcall\tfnv1a\n\tmov\tedx, eax\n\tlea\trax, -272[rbp]\n\tmov\trsi, rax\n\tlea\trax, .LC1[rip]\n\tmov\trdi, rax\n\tmov\teax, 0\n\tcall\tprintf@PLT\n\tmov\tDWORD PTR -296[rbp], 0\n\tmov\tQWORD PTR -288[rbp], 1\n\tmov\tQWORD PTR -280[rbp], 1\n\tjmp\t.L13\n.L15:\n\tmov\trax, QWORD PTR -280[rbp]\n\tmov\trdi, rax\n\tcall\tcollatz_steps\n\tmov\tDWORD PTR -292[rbp], eax\n\tmov\teax, DWORD PTR -292[rbp]\n\tcmp\teax, DWORD PTR -296[rbp]\n\tjle\t.L14\n\tmov\teax, DWORD PTR -292[rbp]\n\tmov\tDWORD PTR -296[rbp], eax\n\tmov\trax, QWORD PTR -280[rbp]\n\tmov\tQWORD PTR -288[rbp], rax\n.L14:\n\tadd\tQWORD PTR -280[rbp], 1\n.L13:\n\tcmp\tQWORD PTR -280[rbp], 9999\n\tjbe\t.L15\n\tmov\tedx, DWORD PTR -296[rbp]\n\tmov\trax, QWORD PTR -288[rbp]\n\tmov\trsi, rax\n\tlea\trax, .LC2[rip]\n\tmov\trdi, rax\n\tmov\teax, 0\n\tcall\tprintf@PLT\n\tmov\teax, 0\n\tmov\trdx, QWORD PTR -8[rbp]\n\tsub\trdx, QWORD PTR fs:40\n\tje\t.L17\n\tcall\t__stack_chk_fail@PLT\n.L17:\n\tleave\n\tret\n\t.size\tmain, .-main\n\t.ident\t\"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n\t.section\t.note.GNU-stack,\"\",@progbits\n\t.section\t.note.gnu.property,\"a\"\n\t.align 8\n\t.long\t1f - 0f\n\t.long\t4f - 1f\n\t.long\t5\n0:\n\t.string\t\"GNU\"\n1:\n\t.align 8\n\t.long\t0xc0000002\n\t.long\t3f - 2f\n2:\n\t.long\t0x3\n3:\n\t.align 8\n4:",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 42.535,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": []
+  },
+  {
+   "compiler": "gcc",
+   "opt": "O2",
+   "compile": {
+    "ok": true,
+    "command": "gcc -O2 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_gcc_O2 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 652.407,
+    "stderr": ""
+   },
+   "asm": "\t.file\t\"prog.c\"\n\t.intel_syntax noprefix\n\t.text\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.LC0:\n\t.string\t\"\\n\"\n.LC1:\n\t.string\t\"fnv1a(\\\"%s\\\") = %08x\\n\"\n\t.section\t.rodata.str1.8,\"aMS\",@progbits,1\n\t.align 8\n.LC2:\n\t.string\t\"longest Collatz chain below 10000: %llu (%d steps)\\n\"\n\t.section\t.text.startup,\"ax\",@progbits\n\t.p2align 4\n\t.globl\tmain\n\t.type\tmain, @function\nmain:\n\tendbr64\n\tpush\trbx\n\tpxor\txmm0, xmm0\n\tmov\tesi, 256\n\tsub\trsp, 272\n\tmov\trdx, QWORD PTR stdin[rip]\n\tmov\trax, QWORD PTR fs:40\n\tmov\tQWORD PTR 264[rsp], rax\n\txor\teax, eax\n\tmov\trbx, rsp\n\tmovaps\tXMMWORD PTR [rsp], xmm0\n\tmov\trdi, rbx\n\tmovaps\tXMMWORD PTR 16[rsp], xmm0\n\tmovaps\tXMMWORD PTR 32[rsp], xmm0\n\tmovaps\tXMMWORD PTR 48[rsp], xmm0\n\tmovaps\tXMMWORD PTR 64[rsp], xmm0\n\tmovaps\tXMMWORD PTR 80[rsp], xmm0\n\tmovaps\tXMMWORD PTR 96[rsp], xmm0\n\tmovaps\tXMMWORD PTR 112[rsp], xmm0\n\tmovaps\tXMMWORD PTR 128[rsp], xmm0\n\tmovaps\tXMMWORD PTR 144[rsp], xmm0\n\tmovaps\tXMMWORD PTR 160[rsp], xmm0\n\tmovaps\tXMMWORD PTR 176[rsp], xmm0\n\tmovaps\tXMMWORD PTR 192[rsp], xmm0\n\tmovaps\tXMMWORD PTR 208[rsp], xmm0\n\tmovaps\tXMMWORD PTR 224[rsp], xmm0\n\tmovaps\tXMMWORD PTR 240[rsp], xmm0\n\tcall\tfgets@PLT\n\ttest\trax, rax\n\tje\t.L18\n.L2:\n\tlea\trsi, .LC0[rip]\n\tmov\trdi, rbx\n\tcall\tstrcspn@PLT\n\tmov\trdi, rbx\n\tmov\tBYTE PTR [rsp+rax], 0\n\tcall\tstrlen@PLT\n\tmov\trsi, rax\n\ttest\trax, rax\n\tje\t.L11\n\tmov\trax, rbx\n\tadd\trsi, rbx\n\tmov\tecx, -2128831035\n.L4:\n\tmovzx\tedx, BYTE PTR [rax]\n\tadd\trax, 1\n\txor\tecx, edx\n\timul\tecx, ecx, 16777619\n\tcmp\trsi, rax\n\tjne\t.L4\n.L3:\n\tlea\trsi, .LC1[rip]\n\tmov\tedi, 2\n\tmov\trdx, rbx\n\txor\teax, eax\n\tcall\t__printf_chk@PLT\n\tmov\tecx, 2\n\tmov\tedi, 1\n\txor\tesi, esi\n\t.p2align 4,,10\n\t.p2align 3\n.L9:\n\tmov\trax, rcx\n\txor\tedx, edx\n\tjmp\t.L7\n\t.p2align 4,,10\n\t.p2align 3\n.L20:\n\tshr\trax\n\tadd\tedx, 1\n\tcmp\trax, 1\n\tje\t.L19\n.L7:\n\ttest\tal, 1\n\tje\t.L20\n\tlea\trax, 1[rax+rax*2]\n\tadd\tedx, 1\n\tcmp\trax, 1\n\tjne\t.L7\n.L19:\n\tcmp\tedx, esi\n\tjle\t.L8\n\tmov\trdi, rcx\n\tmov\tesi, edx\n.L8:\n\tadd\trcx, 1\n\tcmp\trcx, 10000\n\tjne\t.L9\n\tmov\tecx, esi\n\tmov\trdx, rdi\n\txor\teax, eax\n\tmov\tedi, 2\n\tlea\trsi, .LC2[rip]\n\tcall\t__printf_chk@PLT\n\tmov\trax, QWORD PTR 264[rsp]\n\tsub\trax, QWORD PTR fs:40\n\tjne\t.L21\n\tadd\trsp, 272\n\txor\teax, eax\n\tpop\trbx\n\tret\n.L18:\n\tmovabs\trax, 32491004212047983\n\tmov\tQWORD PTR [rsp], rax\n\tjmp\t.L2\n.L11:\n\tmov\tecx, -2128831035\n\tjmp\t.L3\n.L21:\n\tcall\t__stack_chk_fail@PLT\n\t.size\tmain, .-main\n\t.ident\t\"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n\t.section\t.note.GNU-stack,\"\",@progbits\n\t.section\t.note.gnu.property,\"a\"\n\t.align 8\n\t.long\t1f - 0f\n\t.long\t4f - 1f\n\t.long\t5\n0:\n\t.string\t\"GNU\"\n1:\n\t.align 8\n\t.long\t0xc0000002\n\t.long\t3f - 2f\n2:\n\t.long\t0x3\n3:\n\t.align 8\n4:",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 25.263,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": []
+  },
+  {
+   "compiler": "gcc",
+   "opt": "O3",
+   "compile": {
+    "ok": true,
+    "command": "gcc -O3 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_gcc_O3 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 640.657,
+    "stderr": ""
+   },
+   "asm": "\t.file\t\"prog.c\"\n\t.intel_syntax noprefix\n\t.text\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.LC0:\n\t.string\t\"\\n\"\n.LC1:\n\t.string\t\"fnv1a(\\\"%s\\\") = %08x\\n\"\n\t.section\t.rodata.str1.8,\"aMS\",@progbits,1\n\t.align 8\n.LC2:\n\t.string\t\"longest Collatz chain below 10000: %llu (%d steps)\\n\"\n\t.section\t.text.startup,\"ax\",@progbits\n\t.p2align 4\n\t.globl\tmain\n\t.type\tmain, @function\nmain:\n\tendbr64\n\tpush\trbx\n\tpxor\txmm0, xmm0\n\tmov\tesi, 256\n\tsub\trsp, 272\n\tmov\trdx, QWORD PTR stdin[rip]\n\tmov\trax, QWORD PTR fs:40\n\tmov\tQWORD PTR 264[rsp], rax\n\txor\teax, eax\n\tmov\trbx, rsp\n\tmovaps\tXMMWORD PTR [rsp], xmm0\n\tmov\trdi, rbx\n\tmovaps\tXMMWORD PTR 16[rsp], xmm0\n\tmovaps\tXMMWORD PTR 32[rsp], xmm0\n\tmovaps\tXMMWORD PTR 48[rsp], xmm0\n\tmovaps\tXMMWORD PTR 64[rsp], xmm0\n\tmovaps\tXMMWORD PTR 80[rsp], xmm0\n\tmovaps\tXMMWORD PTR 96[rsp], xmm0\n\tmovaps\tXMMWORD PTR 112[rsp], xmm0\n\tmovaps\tXMMWORD PTR 128[rsp], xmm0\n\tmovaps\tXMMWORD PTR 144[rsp], xmm0\n\tmovaps\tXMMWORD PTR 160[rsp], xmm0\n\tmovaps\tXMMWORD PTR 176[rsp], xmm0\n\tmovaps\tXMMWORD PTR 192[rsp], xmm0\n\tmovaps\tXMMWORD PTR 208[rsp], xmm0\n\tmovaps\tXMMWORD PTR 224[rsp], xmm0\n\tmovaps\tXMMWORD PTR 240[rsp], xmm0\n\tcall\tfgets@PLT\n\ttest\trax, rax\n\tje\t.L21\n.L2:\n\tlea\trsi, .LC0[rip]\n\tmov\trdi, rbx\n\tcall\tstrcspn@PLT\n\tmov\trdi, rbx\n\tmov\tBYTE PTR [rsp+rax], 0\n\tcall\tstrlen@PLT\n\tmov\trsi, rax\n\ttest\trax, rax\n\tje\t.L13\n\tmov\trax, rbx\n\tadd\trsi, rbx\n\tmov\tecx, -2128831035\n.L4:\n\tmovzx\tedx, BYTE PTR [rax]\n\tadd\trax, 1\n\txor\tecx, edx\n\timul\tecx, ecx, 16777619\n\tcmp\trsi, rax\n\tjne\t.L4\n.L3:\n\tlea\trsi, .LC1[rip]\n\tmov\tedi, 2\n\tmov\trdx, rbx\n\txor\teax, eax\n\tcall\t__printf_chk@PLT\n\tmov\tecx, 2\n\tmov\tedi, 1\n\txor\tesi, esi\n\t.p2align 4,,10\n\t.p2align 3\n.L5:\n\tmov\trax, rcx\n\txor\tedx, edx\n\t.p2align 4,,10\n\t.p2align 3\n.L9:\n\ttest\tal, 1\n\tjne\t.L6\n\tshr\trax\n\tadd\tedx, 1\n\tcmp\trax, 1\n\tjne\t.L9\n.L8:\n\tcmp\tedx, esi\n\tjle\t.L10\n\tmov\trdi, rcx\n\tmov\tesi, edx\n.L10:\n\tadd\trcx, 1\n\tcmp\trcx, 10000\n\tjne\t.L5\n\tmov\tecx, esi\n\tmov\trdx, rdi\n\txor\teax, eax\n\tmov\tedi, 2\n\tlea\trsi, .LC2[rip]\n\tcall\t__printf_chk@PLT\n\tmov\trax, QWORD PTR 264[rsp]\n\tsub\trax, QWORD PTR fs:40\n\tjne\t.L22\n\tadd\trsp, 272\n\txor\teax, eax\n\tpop\trbx\n\tret\n\t.p2align 4,,10\n\t.p2align 3\n.L6:\n\tlea\trax, 1[rax+rax*2]\n\tadd\tedx, 1\n\tcmp\trax, 1\n\tjne\t.L9\n\tjmp\t.L8\n.L21:\n\tmovabs\trax, 32491004212047983\n\tmov\tQWORD PTR [rsp], rax\n\tjmp\t.L2\n.L13:\n\tmov\tecx, -2128831035\n\tjmp\t.L3\n.L22:\n\tcall\t__stack_chk_fail@PLT\n\t.size\tmain, .-main\n\t.ident\t\"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n\t.section\t.note.GNU-stack,\"\",@progbits\n\t.section\t.note.gnu.property,\"a\"\n\t.align 8\n\t.long\t1f - 0f\n\t.long\t4f - 1f\n\t.long\t5\n0:\n\t.string\t\"GNU\"\n1:\n\t.align 8\n\t.long\t0xc0000002\n\t.long\t3f - 2f\n2:\n\t.long\t0x3\n3:\n\t.align 8\n4:",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 26.341,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": []
+  },
+  {
+   "compiler": "clang",
+   "opt": "O0",
+   "compile": {
+    "ok": true,
+    "command": "clang -O0 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_clang_O0 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 663.974,
+    "stderr": ""
+   },
+   "asm": "\t.text\n\t.intel_syntax noprefix\n\t.file\t\"prog.c\"\n\t.globl\tmain                            # -- Begin function main\n\t.p2align\t4, 0x90\n\t.type\tmain,@function\nmain:                                   # @main\n# %bb.0:\n\tpush\trbp\n\tmov\trbp, rsp\n\tsub\trsp, 320\n\tmov\tdword ptr [rbp - 4], 0\n\tlea\trdi, [rbp - 272]\n\txor\tesi, esi\n\tmov\tedx, 256\n\tcall\tmemset@PLT\n\tlea\trdi, [rbp - 272]\n\tmov\trax, qword ptr [rip + stdin@GOTPCREL]\n\tmov\trdx, qword ptr [rax]\n\tmov\tesi, 256\n\tcall\tfgets@PLT\n\tcmp\trax, 0\n\tjne\t.LBB0_2\n# %bb.1:\n\tlea\trdi, [rbp - 272]\n\tlea\trsi, [rip + .L.str]\n\tcall\tstrcpy@PLT\n.LBB0_2:\n\tlea\trdi, [rbp - 272]\n\tlea\trsi, [rip + .L.str.1]\n\tcall\tstrcspn@PLT\n\tmov\tbyte ptr [rbp + rax - 272], 0\n\tlea\trax, [rbp - 272]\n\tmov\tqword ptr [rbp - 312], rax      # 8-byte Spill\n\tlea\trdi, [rbp - 272]\n\tcall\tfnv1a\n\tmov\trsi, qword ptr [rbp - 312]      # 8-byte Reload\n\tmov\tedx, eax\n\tlea\trdi, [rip + .L.str.2]\n\tmov\tal, 0\n\tcall\tprintf@PLT\n\tmov\tdword ptr [rbp - 276], 0\n\tmov\tqword ptr [rbp - 288], 1\n\tmov\tqword ptr [rbp - 296], 1\n.LBB0_3:                                # =>This Inner Loop Header: Depth=1\n\tcmp\tqword ptr [rbp - 296], 10000\n\tjae\t.LBB0_8\n# %bb.4:                                #   in Loop: Header=BB0_3 Depth=1\n\tmov\trdi, qword ptr [rbp - 296]\n\tcall\tcollatz_steps\n\tmov\tdword ptr [rbp - 300], eax\n\tmov\teax, dword ptr [rbp - 300]\n\tcmp\teax, dword ptr [rbp - 276]\n\tjle\t.LBB0_6\n# %bb.5:                                #   in Loop: Header=BB0_3 Depth=1\n\tmov\teax, dword ptr [rbp - 300]\n\tmov\tdword ptr [rbp - 276], eax\n\tmov\trax, qword ptr [rbp - 296]\n\tmov\tqword ptr [rbp - 288], rax\n.LBB0_6:                                #   in Loop: Header=BB0_3 Depth=1\n\tjmp\t.LBB0_7\n.LBB0_7:                                #   in Loop: Header=BB0_3 Depth=1\n\tmov\trax, qword ptr [rbp - 296]\n\tadd\trax, 1\n\tmov\tqword ptr [rbp - 296], rax\n\tjmp\t.LBB0_3\n.LBB0_8:\n\tmov\trsi, qword ptr [rbp - 288]\n\tmov\tedx, dword ptr [rbp - 276]\n\tlea\trdi, [rip + .L.str.3]\n\tmov\tal, 0\n\tcall\tprintf@PLT\n\txor\teax, eax\n\tadd\trsp, 320\n\tpop\trbp\n\tret\n.Lfunc_end0:\n\t.size\tmain, .Lfunc_end0-main\n                                        # -- End function\n\t.p2align\t4, 0x90                         # -- Begin function fnv1a\n\t.type\tfnv1a,@function\nfnv1a:                                  # @fnv1a\n# %bb.0:\n\tpush\trbp\n\tmov\trbp, rsp\n\tsub\trsp, 32\n\tmov\tqword ptr [rbp - 8], rdi\n\tmov\tdword ptr [rbp - 12], -2128831035\n\tmov\tqword ptr [rbp - 24], 0\n.LBB1_1:                                # =>This Inner Loop Header: Depth=1\n\tmov\trax, qword ptr [rbp - 24]\n\tmov\tqword ptr [rbp - 32], rax       # 8-byte Spill\n\tmov\trdi, qword ptr [rbp - 8]\n\tcall\tstrlen@PLT\n\tmov\trcx, rax\n\tmov\trax, qword ptr [rbp - 32]       # 8-byte Reload\n\tcmp\trax, rcx\n\tjae\t.LBB1_4\n# %bb.2:                                #   in Loop: Header=BB1_1 Depth=1\n\tmov\trax, qword ptr [rbp - 8]\n\tmov\trcx, qword ptr [rbp - 24]\n\tmovzx\teax, byte ptr [rax + rcx]\n\txor\teax, dword ptr [rbp - 12]\n\tmov\tdword ptr [rbp - 12], eax\n\timul\teax, dword ptr [rbp - 12], 16777619\n\tmov\tdword ptr [rbp - 12], eax\n# %bb.3:                                #   in Loop: Header=BB1_1 Depth=1\n\tmov\trax, qword ptr [rbp - 24]\n\tadd\trax, 1\n\tmov\tqword ptr [rbp - 24], rax\n\tjmp\t.LBB1_1\n.LBB1_4:\n\tmov\teax, dword ptr [rbp - 12]\n\tadd\trsp, 32\n\tpop\trbp\n\tret\n.Lfunc_end1:\n\t.size\tfnv1a, .Lfunc_end1-fnv1a\n                                        # -- End function\n\t.p2align\t4, 0x90                         # -- Begin function collatz_steps\n\t.type\tcollatz_steps,@function\ncollatz_steps:                          # @collatz_steps\n# %bb.0:\n\tpush\trbp\n\tmov\trbp, rsp\n\tmov\tqword ptr [rbp - 8], rdi\n\tmov\tdword ptr [rbp - 12], 0\n.LBB2_1:                                # =>This Inner Loop Header: Depth=1\n\tcmp\tqword ptr [rbp - 8], 1\n\tje\t.LBB2_6\n# %bb.2:                                #   in Loop: Header=BB2_1 Depth=1\n\tmov\trax, qword ptr [rbp - 8]\n\tand\trax, 1\n\tcmp\trax, 0\n\tjne\t.LBB2_4\n# %bb.3:                                #   in Loop: Header=BB2_1 Depth=1\n\tmov\trax, qword ptr [rbp - 8]\n\tshr\trax\n\tmov\tqword ptr [rbp - 24], rax       # 8-byte Spill\n\tjmp\t.LBB2_5\n.LBB2_4:                                #   in Loop: Header=BB2_1 Depth=1\n\timul\trax, qword ptr [rbp - 8], 3\n\tadd\trax, 1\n\tmov\tqword ptr [rbp - 24], rax       # 8-byte Spill\n.LBB2_5:                                #   in Loop: Header=BB2_1 Depth=1\n\tmov\trax, qword ptr [rbp - 24]       # 8-byte Reload\n\tmov\tqword ptr [rbp - 8], rax\n\tmov\teax, dword ptr [rbp - 12]\n\tadd\teax, 1\n\tmov\tdword ptr [rbp - 12], eax\n\tjmp\t.LBB2_1\n.LBB2_6:\n\tmov\teax, dword ptr [rbp - 12]\n\tpop\trbp\n\tret\n.Lfunc_end2:\n\t.size\tcollatz_steps, .Lfunc_end2-collatz_steps\n                                        # -- End function\n\t.type\t.L.str,@object                  # @.str\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.L.str:\n\t.asciz\t\"optlens\"\n\t.size\t.L.str, 8\n\n\t.type\t.L.str.1,@object                # @.str.1\n.L.str.1:\n\t.asciz\t\"\\n\"\n\t.size\t.L.str.1, 2\n\n\t.type\t.L.str.2,@object                # @.str.2\n.L.str.2:\n\t.asciz\t\"fnv1a(\\\"%s\\\") = %08x\\n\"\n\t.size\t.L.str.2, 20\n\n\t.type\t.L.str.3,@object                # @.str.3\n.L.str.3:\n\t.asciz\t\"longest Collatz chain below 10000: %llu (%d steps)\\n\"\n\t.size\t.L.str.3, 52\n\n\t.ident\t\"Ubuntu clang version 18.1.3 (1ubuntu1)\"\n\t.section\t\".note.GNU-stack\",\"\",@progbits\n\t.addrsig\n\t.addrsig_sym fgets\n\t.addrsig_sym strcpy\n\t.addrsig_sym strcspn\n\t.addrsig_sym printf\n\t.addrsig_sym fnv1a\n\t.addrsig_sym collatz_steps\n\t.addrsig_sym strlen\n\t.addrsig_sym stdin",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 42.587,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": []
+  },
+  {
+   "compiler": "clang",
+   "opt": "O2",
+   "compile": {
+    "ok": true,
+    "command": "clang -O2 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_clang_O2 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 577.925,
+    "stderr": ""
+   },
+   "asm": "\t.text\n\t.intel_syntax noprefix\n\t.file\t\"prog.c\"\n\t.globl\tmain                            # -- Begin function main\n\t.p2align\t4, 0x90\n\t.type\tmain,@function\nmain:                                   # @main\n# %bb.0:\n\tpush\trbx\n\tsub\trsp, 256\n\txorps\txmm0, xmm0\n\tmovaps\txmmword ptr [rsp + 240], xmm0\n\tmovaps\txmmword ptr [rsp + 224], xmm0\n\tmovaps\txmmword ptr [rsp + 208], xmm0\n\tmovaps\txmmword ptr [rsp + 192], xmm0\n\tmovaps\txmmword ptr [rsp + 176], xmm0\n\tmovaps\txmmword ptr [rsp + 160], xmm0\n\tmovaps\txmmword ptr [rsp + 144], xmm0\n\tmovaps\txmmword ptr [rsp + 128], xmm0\n\tmovaps\txmmword ptr [rsp + 112], xmm0\n\tmovaps\txmmword ptr [rsp + 96], xmm0\n\tmovaps\txmmword ptr [rsp + 80], xmm0\n\tmovaps\txmmword ptr [rsp + 64], xmm0\n\tmovaps\txmmword ptr [rsp + 48], xmm0\n\tmovaps\txmmword ptr [rsp + 32], xmm0\n\tmovaps\txmmword ptr [rsp + 16], xmm0\n\tmovaps\txmmword ptr [rsp], xmm0\n\tmov\trax, qword ptr [rip + stdin@GOTPCREL]\n\tmov\trdx, qword ptr [rax]\n\tmov\trdi, rsp\n\tmov\tesi, 256\n\tcall\tfgets@PLT\n\ttest\trax, rax\n\tjne\t.LBB0_2\n# %bb.1:\n\tmovabs\trax, 32491004212047983\n\tmov\tqword ptr [rsp], rax\n.LBB0_2:\n\tlea\trsi, [rip + .L.str.1]\n\tmov\trbx, rsp\n\tmov\trdi, rbx\n\tcall\tstrcspn@PLT\n\tmov\tbyte ptr [rsp + rax], 0\n\tmov\trdi, rbx\n\tcall\tstrlen@PLT\n\ttest\trax, rax\n\tje\t.LBB0_3\n# %bb.4:\n\tmov\tecx, eax\n\tand\tecx, 3\n\tcmp\trax, 4\n\tjae\t.LBB0_6\n# %bb.5:\n\tmov\tedx, -2128831035\n\txor\tesi, esi\n\tjmp\t.LBB0_8\n.LBB0_3:\n\tmov\tedx, -2128831035\n\tjmp\t.LBB0_11\n.LBB0_6:\n\tand\trax, -4\n\tmov\tedx, -2128831035\n\txor\tesi, esi\n\t.p2align\t4, 0x90\n.LBB0_7:                                # =>This Inner Loop Header: Depth=1\n\tmovzx\tedi, byte ptr [rsp + rsi]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tmovzx\tedi, byte ptr [rsp + rsi + 1]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tmovzx\tedi, byte ptr [rsp + rsi + 2]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tmovzx\tedi, byte ptr [rsp + rsi + 3]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tadd\trsi, 4\n\tcmp\trax, rsi\n\tjne\t.LBB0_7\n.LBB0_8:\n\ttest\trcx, rcx\n\tje\t.LBB0_11\n# %bb.9:\n\tlea\trax, [rsp + rsi]\n\txor\tesi, esi\n\t.p2align\t4, 0x90\n.LBB0_10:                               # =>This Inner Loop Header: Depth=1\n\tmovzx\tedi, byte ptr [rax + rsi]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tinc\trsi\n\tcmp\trcx, rsi\n\tjne\t.LBB0_10\n.LBB0_11:\n\tlea\trdi, [rip + .L.str.2]\n\txor\tebx, ebx\n\tmov\trsi, rsp\n\txor\teax, eax\n\tcall\tprintf@PLT\n\tmov\teax, 1\n\tmov\tesi, 1\n\tjmp\t.LBB0_12\n\t.p2align\t4, 0x90\n.LBB0_15:                               #   in Loop: Header=BB0_12 Depth=1\n\tcmp\tecx, ebx\n\tcmovg\trsi, rax\n\tcmovg\tebx, ecx\n\tinc\trax\n\tcmp\trax, 10000\n\tje\t.LBB0_16\n.LBB0_12:                               # =>This Loop Header: Depth=1\n                                        #     Child Loop BB0_14 Depth 2\n\tmov\tecx, 0\n\tcmp\trax, 1\n\tje\t.LBB0_15\n# %bb.13:                               #   in Loop: Header=BB0_12 Depth=1\n\txor\tecx, ecx\n\tmov\trdi, rax\n\tmov\trdx, rax\n\t.p2align\t4, 0x90\n.LBB0_14:                               #   Parent Loop BB0_12 Depth=1\n                                        # =>  This Inner Loop Header: Depth=2\n\tlea\tr8, [rdi + 2*rdi]\n\tinc\tr8\n\tshr\trdx\n\ttest\tdil, 1\n\tcmovne\trdx, r8\n\tinc\tecx\n\tmov\trdi, rdx\n\tcmp\trdx, 1\n\tjne\t.LBB0_14\n\tjmp\t.LBB0_15\n.LBB0_16:\n\tlea\trdi, [rip + .L.str.3]\n\tmov\tedx, ebx\n\txor\teax, eax\n\tcall\tprintf@PLT\n\txor\teax, eax\n\tadd\trsp, 256\n\tpop\trbx\n\tret\n.Lfunc_end0:\n\t.size\tmain, .Lfunc_end0-main\n                                        # -- End function\n\t.type\t.L.str.1,@object                # @.str.1\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.L.str.1:\n\t.asciz\t\"\\n\"\n\t.size\t.L.str.1, 2\n\n\t.type\t.L.str.2,@object                # @.str.2\n.L.str.2:\n\t.asciz\t\"fnv1a(\\\"%s\\\") = %08x\\n\"\n\t.size\t.L.str.2, 20\n\n\t.type\t.L.str.3,@object                # @.str.3\n.L.str.3:\n\t.asciz\t\"longest Collatz chain below 10000: %llu (%d steps)\\n\"\n\t.size\t.L.str.3, 52\n\n\t.ident\t\"Ubuntu clang version 18.1.3 (1ubuntu1)\"\n\t.section\t\".note.GNU-stack\",\"\",@progbits\n\t.addrsig",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 18.495,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": []
+  },
+  {
+   "compiler": "clang",
+   "opt": "O3",
+   "compile": {
+    "ok": true,
+    "command": "clang -O3 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_clang_O3 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 601.164,
+    "stderr": ""
+   },
+   "asm": "\t.text\n\t.intel_syntax noprefix\n\t.file\t\"prog.c\"\n\t.globl\tmain                            # -- Begin function main\n\t.p2align\t4, 0x90\n\t.type\tmain,@function\nmain:                                   # @main\n# %bb.0:\n\tpush\trbx\n\tsub\trsp, 256\n\txorps\txmm0, xmm0\n\tmovaps\txmmword ptr [rsp + 240], xmm0\n\tmovaps\txmmword ptr [rsp + 224], xmm0\n\tmovaps\txmmword ptr [rsp + 208], xmm0\n\tmovaps\txmmword ptr [rsp + 192], xmm0\n\tmovaps\txmmword ptr [rsp + 176], xmm0\n\tmovaps\txmmword ptr [rsp + 160], xmm0\n\tmovaps\txmmword ptr [rsp + 144], xmm0\n\tmovaps\txmmword ptr [rsp + 128], xmm0\n\tmovaps\txmmword ptr [rsp + 112], xmm0\n\tmovaps\txmmword ptr [rsp + 96], xmm0\n\tmovaps\txmmword ptr [rsp + 80], xmm0\n\tmovaps\txmmword ptr [rsp + 64], xmm0\n\tmovaps\txmmword ptr [rsp + 48], xmm0\n\tmovaps\txmmword ptr [rsp + 32], xmm0\n\tmovaps\txmmword ptr [rsp + 16], xmm0\n\tmovaps\txmmword ptr [rsp], xmm0\n\tmov\trax, qword ptr [rip + stdin@GOTPCREL]\n\tmov\trdx, qword ptr [rax]\n\tmov\trdi, rsp\n\tmov\tesi, 256\n\tcall\tfgets@PLT\n\ttest\trax, rax\n\tjne\t.LBB0_2\n# %bb.1:\n\tmovabs\trax, 32491004212047983\n\tmov\tqword ptr [rsp], rax\n.LBB0_2:\n\tlea\trsi, [rip + .L.str.1]\n\tmov\trbx, rsp\n\tmov\trdi, rbx\n\tcall\tstrcspn@PLT\n\tmov\tbyte ptr [rsp + rax], 0\n\tmov\trdi, rbx\n\tcall\tstrlen@PLT\n\ttest\trax, rax\n\tje\t.LBB0_3\n# %bb.4:\n\tmov\tecx, eax\n\tand\tecx, 3\n\tcmp\trax, 4\n\tjae\t.LBB0_6\n# %bb.5:\n\tmov\tedx, -2128831035\n\txor\tesi, esi\n\tjmp\t.LBB0_8\n.LBB0_3:\n\tmov\tedx, -2128831035\n\tjmp\t.LBB0_11\n.LBB0_6:\n\tand\trax, -4\n\tmov\tedx, -2128831035\n\txor\tesi, esi\n\t.p2align\t4, 0x90\n.LBB0_7:                                # =>This Inner Loop Header: Depth=1\n\tmovzx\tedi, byte ptr [rsp + rsi]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tmovzx\tedi, byte ptr [rsp + rsi + 1]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tmovzx\tedi, byte ptr [rsp + rsi + 2]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tmovzx\tedi, byte ptr [rsp + rsi + 3]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tadd\trsi, 4\n\tcmp\trax, rsi\n\tjne\t.LBB0_7\n.LBB0_8:\n\ttest\trcx, rcx\n\tje\t.LBB0_11\n# %bb.9:\n\tlea\trax, [rsp + rsi]\n\txor\tesi, esi\n\t.p2align\t4, 0x90\n.LBB0_10:                               # =>This Inner Loop Header: Depth=1\n\tmovzx\tedi, byte ptr [rax + rsi]\n\txor\tedi, edx\n\timul\tedx, edi, 16777619\n\tinc\trsi\n\tcmp\trcx, rsi\n\tjne\t.LBB0_10\n.LBB0_11:\n\tlea\trdi, [rip + .L.str.2]\n\txor\tebx, ebx\n\tmov\trsi, rsp\n\txor\teax, eax\n\tcall\tprintf@PLT\n\tmov\teax, 1\n\tmov\tesi, 1\n\tjmp\t.LBB0_12\n\t.p2align\t4, 0x90\n.LBB0_15:                               #   in Loop: Header=BB0_12 Depth=1\n\tcmp\tecx, ebx\n\tcmovg\trsi, rax\n\tcmovg\tebx, ecx\n\tinc\trax\n\tcmp\trax, 10000\n\tje\t.LBB0_16\n.LBB0_12:                               # =>This Loop Header: Depth=1\n                                        #     Child Loop BB0_14 Depth 2\n\tmov\tecx, 0\n\tcmp\trax, 1\n\tje\t.LBB0_15\n# %bb.13:                               #   in Loop: Header=BB0_12 Depth=1\n\txor\tecx, ecx\n\tmov\trdi, rax\n\tmov\trdx, rax\n\t.p2align\t4, 0x90\n.LBB0_14:                               #   Parent Loop BB0_12 Depth=1\n                                        # =>  This Inner Loop Header: Depth=2\n\tlea\tr8, [rdi + 2*rdi]\n\tinc\tr8\n\tshr\trdx\n\ttest\tdil, 1\n\tcmovne\trdx, r8\n\tinc\tecx\n\tmov\trdi, rdx\n\tcmp\trdx, 1\n\tjne\t.LBB0_14\n\tjmp\t.LBB0_15\n.LBB0_16:\n\tlea\trdi, [rip + .L.str.3]\n\tmov\tedx, ebx\n\txor\teax, eax\n\tcall\tprintf@PLT\n\txor\teax, eax\n\tadd\trsp, 256\n\tpop\trbx\n\tret\n.Lfunc_end0:\n\t.size\tmain, .Lfunc_end0-main\n                                        # -- End function\n\t.type\t.L.str.1,@object                # @.str.1\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.L.str.1:\n\t.asciz\t\"\\n\"\n\t.size\t.L.str.1, 2\n\n\t.type\t.L.str.2,@object                # @.str.2\n.L.str.2:\n\t.asciz\t\"fnv1a(\\\"%s\\\") = %08x\\n\"\n\t.size\t.L.str.2, 20\n\n\t.type\t.L.str.3,@object                # @.str.3\n.L.str.3:\n\t.asciz\t\"longest Collatz chain below 10000: %llu (%d steps)\\n\"\n\t.size\t.L.str.3, 52\n\n\t.ident\t\"Ubuntu clang version 18.1.3 (1ubuntu1)\"\n\t.section\t\".note.GNU-stack\",\"\",@progbits\n\t.addrsig",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 18.559,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": []
+  }
+ ],
+ "sanitizers": [
+  {
+   "name": "asan+ubsan",
+   "compile": {
+    "ok": true,
+    "command": "clang -O1 -g -fno-omit-frame-pointer -fsanitize=undefined,address -std=gnu17 -w -fno-diagnostics-color prog.c -o bin_asan_ubsan -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 1304.615,
+    "stderr": ""
+   },
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 49.147,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   }
+  },
+  {
+   "name": "msan",
+   "compile": {
+    "ok": true,
+    "command": "clang -O0 -g -fno-omit-frame-pointer -fsanitize=memory -fsanitize-memory-track-origins=2 -std=gnu17 -w -fno-diagnostics-color prog.c -o bin_msan -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 1100.565,
+    "stderr": ""
+   },
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 126.674,
+    "stdout": "fnv1a(\"optlens\") = f0d0b266\nlongest Collatz chain below 10000: 6171 (261 steps)\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "50bcfef3a5bafa536b3d2de4216d46f74f640c714a2b2c259e9824f4ddae6e87",
+    "stderr": "",
+    "stderr_truncated": false
+   }
+  }
+ ],
+ "remarks": {
+  "command": "clang -O3 -gline-tables-only -std=gnu17 -w -fno-diagnostics-color -Rpass=.* -Rpass-missed=.* -Rpass-analysis=.* -c prog.c -o /dev/null",
+  "ok": true,
+  "raw": "prog.c:10:28: remark: hoisting call [-Rpass=licm]\n   10 |     for (size_t i = 0; i < strlen(s); i++) {\n      |                            ^\nprog.c:31:44: remark: 'fnv1a' inlined into 'main' with (cost=-14960, threshold=250) at callsite main:5:44; [-Rpass=inline]\n   31 |     printf(\"fnv1a(\\\"%s\\\") = %08x\\n\", line, fnv1a(line));\n      |                                            ^\nprog.c:36:17: remark: 'collatz_steps' inlined into 'main' with (cost=-14980, threshold=250) at callsite main:10:17; [-Rpass=inline]\n   36 |         int s = collatz_steps(n);\n      |                 ^\nprog.c:11:23: remark: load of type i8 not eliminated [-Rpass-missed=gvn]\n   11 |         h ^= (uint8_t)s[i];\n      |                       ^\nprog.c:11:23: remark: load of type i8 not eliminated [-Rpass-missed=gvn]\nprog.c:10:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]\n   10 |     for (size_t i = 0; i < strlen(s); i++) {\n      |     ^\nprog.c:10:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]\nprog.c:19:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]\n   19 |     while (n != 1) {\n      |     ^\nprog.c:19:5: remark: loop not vectorized: could not determine number of loop iterations [-Rpass-analysis=loop-vectorize]\nprog.c:19:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]\nprog.c:20:20: remark: Cannot SLP vectorize list: vectorization was impossible with available vectorization factors [-Rpass-missed=slp-vectorizer]\n   20 |         n = (n % 2 == 0) ? n / 2 : 3 * n + 1;\n      |                    ^\nprog.c:10:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]\n   10 |     for (size_t i = 0; i < strlen(s); i++) {\n      |     ^\nprog.c:26:5: remark: Canonicalize natural loops: IR instruction count changed from 96 to 101; Delta: 5 [-Rpass-analysis=size-info]\n   26 | int main(void) {\n      |     ^\nprog.c:26:5: remark: Canonicalize natural loops: Function: main: IR instruction count changed from 96 to 101; Delta: 5 [-Rpass-analysis=size-info]\nprog.c:26:5: remark: Loop Strength Reduction: IR instruction count changed from 101 to 102; Delta: 1 [-Rpass-analysis=size-info]\nprog.c:26:5: remark: Loop Strength Reduction: Function: main: IR instruction count changed from 101 to 102; Delta: 1 [-Rpass-analysis=size-info]\nprog.c:26:5: remark: Loop Strength Reduction: IR instruction count changed from 102 to 101; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:26:5: remark: Loop Strength Reduction: Function: main: IR instruction count changed from 102 to 101; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:26:5: remark: CodeGen Prepare: IR instruction count changed from 101 to 95; Delta: -6 [-Rpass-analysis=size-info]\nprog.c:26:5: remark: CodeGen Prepare: Function: main: IR instruction count changed from 101 to 95; Delta: -6 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: X86 DAG->DAG Instruction Selection: Function: main: MI Instruction count changed from 0 to 159; Delta: 159 [-Rpass-analysis=size-info]\n   26 | int main(void) {\n      | ^\nprog.c:26:1: remark: Merge disjoint stack slots: Function: main: MI Instruction count changed from 159 to 157; Delta: -2 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Remove dead machine instructions: Function: main: MI Instruction count changed from 157 to 155; Delta: -2 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Machine Common Subexpression Elimination: Function: main: MI Instruction count changed from 155 to 154; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Peephole Optimizations: Function: main: MI Instruction count changed from 154 to 153; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Process Implicit Definitions: Function: main: MI Instruction count changed from 153 to 152; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Eliminate PHI nodes for register allocation: Function: main: MI Instruction count changed from 152 to 181; Delta: 29 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Two-Address instruction pass: Function: main: MI Instruction count changed from 181 to 196; Delta: 15 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Register Coalescer: Function: main: MI Instruction count changed from 196 to 134; Delta: -62 [-Rpass-analysis=size-info]\nprog.c:19:5: remark: 1 virtual registers copies 5.120000e+02 total copies cost generated in loop [-Rpass-missed=regalloc]\n   19 |     while (n != 1) {\n      |     ^\nprog.c:35:5: remark: 3 virtual registers copies 5.440000e+02 total copies cost generated in loop [-Rpass-missed=regalloc]\n   35 |     for (uint64_t n = 1; n < 10000; n++) {\n      |     ^\nprog.c:26:1: remark: 7 virtual registers copies 5.476250e+02 total copies cost generated in function [-Rpass-missed=regalloc]\n   26 | int main(void) {\n      | ^\nprog.c:26:1: remark: Virtual Register Rewriter: Function: main: MI Instruction count changed from 134 to 123; Delta: -11 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: 264 stack bytes in function 'main' [-Rpass-analysis=prologepilog]\nprog.c:26:1: remark: Prologue/Epilogue Insertion & Frame Finalization: Function: main: MI Instruction count changed from 123 to 122; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Control Flow Optimizer: Function: main: MI Instruction count changed from 122 to 114; Delta: -8 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: Branch Probability Basic Block Placement: Function: main: MI Instruction count changed from 114 to 116; Delta: 2 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: X86 LEA Fixup: Function: main: MI Instruction count changed from 116 to 117; Delta: 1 [-Rpass-analysis=size-info]\nprog.c:26:1: remark: \nFunction: main\nOffset: [SP-8], Type: Spill, Align: 16, Size: 8\nOffset: [SP-264], Type: Variable, Align: 16, Size: 256 [-Rpass-analysis=stack-frame-layout]\nprog.c:27:10: remark: BasicBlock: \n: 26\n [-Rpass-analysis=asm-printer]\n   27 |     char line[256] = \"\";\n      |          ^\nprog.c:26:5: remark: BasicBlock: \n: 2\n [-Rpass-analysis=asm-printer]\n   26 | int main(void) {\n      |     ^\nprog.c:30:10: remark: BasicBlock: \n: 9\n [-Rpass-analysis=asm-printer]\n   30 |     line[strcspn(line, \"\\n\")] = '\\0';\n      |          ^\nprog.c:10:5: remark: BasicBlock: \n: 4\n [-Rpass-analysis=asm-printer]\n   10 |     for (size_t i = 0; i < strlen(s); i++) {\n      |     ^\nprog.c:26:5: remark: BasicBlock: \n: 3\n [-Rpass-analysis=asm-printer]\n   26 | int main(void) {\n      |     ^\nprog.c:26:5: remark: BasicBlock: \n: 2\n [-Rpass-analysis=asm-printer]\nprog.c:10:5: remark: BasicBlock: \n: 3\n [-Rpass-analysis=asm-printer]\n   10 |     for (size_t i = 0; i < strlen(s); i++) {\n      |     ^\nprog.c:11:23: remark: BasicBlock: \n: 15\n [-Rpass-analysis=asm-printer]\n   11 |         h ^= (uint8_t)s[i];\n      |                       ^\nprog.c:10:5: remark: BasicBlock: \n: 2\n [-Rpass-analysis=asm-printer]\n   10 |     for (size_t i = 0; i < strlen(s); i++) {\n      |     ^\nprog.c:10:5: remark: BasicBlock: \n: 2\n [-Rpass-analysis=asm-printer]\nprog.c:11:23: remark: BasicBlock: \n: 6\n [-Rpass-analysis=asm-printer]\n   11 |         h ^= (uint8_t)s[i];\n      |                       ^\nprog.c:31:5: remark: BasicBlock: \n: 8\n [-Rpass-analysis=asm-printer]\n   31 |     printf(\"fnv1a(\\\"%s\\\") = %08x\\n\", line, fnv1a(line));\n      |     ^\nprog.c:37:15: remark: BasicBlock: \n: 6\n [-Rpass-analysis=asm-printer]\n   37 |         if (s > best) {\n      |               ^\nprog.c:26:5: remark: BasicBlock: \n: 3\n [-Rpass-analysis=asm-printer]\n   26 | int main(void) {\n      |     ^\nprog.c:26:5: remark: BasicBlock: \n: 3\n [-Rpass-analysis=asm-printer]\nprog.c:20:13: remark: BasicBlock: \n: 10\n [-Rpass-analysis=asm-printer]\n   20 |         n = (n % 2 == 0) ? n / 2 : 3 * n + 1;\n      |             ^\nprog.c:42:5: remark: BasicBlock: \n: 8\n [-Rpass-analysis=asm-printer]\n   42 |     printf(\"longest Collatz chain below 10000: %llu (%d steps)\\n\", (unsigned long long)arg, best);\n      |     ^\nprog.c:26:1: remark: 112 instructions in function [-Rpass-analysis=asm-printer]\n   26 | int main(void) {\n      | ^\n",
+  "truncated": false
+ },
+ "timings_ms": {
+  "compile": 2264,
+  "run": 359
+ }
+}

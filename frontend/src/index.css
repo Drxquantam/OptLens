@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens (RGB triplets so Tailwind can apply alpha). */
+:root {
+  --canvas: 246 247 249;
+  --panel: 255 255 255;
+  --raised: 241 242 246;
+  --line: 15 18 30;
+  --fg: 22 24 31;
+  --muted: 92 98 112;
+  --faint: 140 146 160;
+  --accent: 98 79 247;
+  --ok: 22 163 74;
+  --warn: 217 119 6;
+  --bad: 220 38 38;
+  --neutral: 100 116 139;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: 9 10 13;
+  --panel: 14 15 19;
+  --raised: 22 24 30;
+  --line: 255 255 255;
+  --fg: 232 234 240;
+  --muted: 150 156 170;
+  --faint: 98 104 118;
+  --accent: 139 123 255;
+  --ok: 52 211 153;
+  --warn: 251 191 36;
+  --bad: 248 113 113;
+  --neutral: 148 163 184;
+  color-scheme: dark;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-canvas text-fg font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.3);
+  }
+}
+
+@layer components {
+  .hairline {
+    border-color: rgb(var(--line) / 0.08);
+  }
+  .card {
+    @apply rounded-xl border bg-panel shadow-soft hairline;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px] font-medium hairline;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-muted transition-colors
+      hover:bg-raised hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50;
+  }
+  .select {
+    @apply rounded-lg border bg-raised px-2.5 py-1.5 text-sm text-fg outline-none transition-colors hairline
+      hover:border-accent/40 focus:border-accent/60;
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--line) / 0.15) transparent;
+  }
+}
+
+/* Monaco decorations */
+.remark-glyph {
+  background: rgb(var(--accent));
+  border-radius: 9999px;
+  width: 6px !important;
+  height: 6px !important;
+  margin-left: 6px;
+  margin-top: 7px;
+}
+.remark-glyph-missed {
+  background: rgb(var(--warn));
+}
+.finding-glyph {
+  background: rgb(var(--bad));
+  border-radius: 2px;
+  width: 7px !important;
+  height: 7px !important;
+  margin-left: 5px;
+  margin-top: 6px;
+  transform: rotate(45deg);
+}
+.finding-line {
+  background: rgb(var(--bad) / 0.08);
+}
+.focus-line {
+  background: rgb(var(--accent) / 0.16);
+  transition: background 600ms ease;
+}

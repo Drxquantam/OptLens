@@ -1,0 +1,380 @@
+{
+ "runner_version": "1",
+ "toolchain": {
+  "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "clang": "Ubuntu clang version 18.1.3 (1ubuntu1)"
+ },
+ "limits": {
+  "compile_timeout_s": 15.0,
+  "run_timeout_s": 2.0,
+  "sanitizer_timeout_s": 8.0,
+  "output_cap_bytes": 16384,
+  "file_size_bytes": 1048576,
+  "compile_file_size_bytes": 50331648,
+  "asm_max_lines": 4000,
+  "remarks_cap_bytes": 262144,
+  "reruns": 3
+ },
+ "builds": [
+  {
+   "compiler": "gcc",
+   "opt": "O0",
+   "compile": {
+    "ok": true,
+    "command": "gcc -O0 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_gcc_O0 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 314.4,
+    "stderr": ""
+   },
+   "asm": "\t.file\t\"prog.c\"\n\t.intel_syntax noprefix\n\t.text\n\t.globl\talways_bigger\n\t.type\talways_bigger, @function\nalways_bigger:\n\tendbr64\n\tpush\trbp\n\tmov\trbp, rsp\n\tmov\tDWORD PTR -4[rbp], edi\n\tmov\teax, 1\n\tpop\trbp\n\tret\n\t.size\talways_bigger, .-always_bigger\n\t.section\t.rodata\n.LC0:\n\t.string\t\"INT_MAX + 1 > INT_MAX ? %d\\n\"\n\t.text\n\t.globl\tmain\n\t.type\tmain, @function\nmain:\n\tendbr64\n\tpush\trbp\n\tmov\trbp, rsp\n\tsub\trsp, 16\n\tmov\tDWORD PTR -8[rbp], 2147483647\n\tmov\teax, DWORD PTR -8[rbp]\n\tmov\tDWORD PTR -4[rbp], eax\n\tmov\teax, DWORD PTR -4[rbp]\n\tmov\tedi, eax\n\tcall\talways_bigger\n\tmov\tesi, eax\n\tlea\trax, .LC0[rip]\n\tmov\trdi, rax\n\tmov\teax, 0\n\tcall\tprintf@PLT\n\tmov\teax, 0\n\tleave\n\tret\n\t.size\tmain, .-main\n\t.ident\t\"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n\t.section\t.note.GNU-stack,\"\",@progbits\n\t.section\t.note.gnu.property,\"a\"\n\t.align 8\n\t.long\t1f - 0f\n\t.long\t4f - 1f\n\t.long\t5\n0:\n\t.string\t\"GNU\"\n1:\n\t.align 8\n\t.long\t0xc0000002\n\t.long\t3f - 2f\n2:\n\t.long\t0x3\n3:\n\t.align 8\n4:",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 7.034,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 1\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": [
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 5.418
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.489
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 7.802
+    }
+   ]
+  },
+  {
+   "compiler": "gcc",
+   "opt": "O2",
+   "compile": {
+    "ok": true,
+    "command": "gcc -O2 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_gcc_O2 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 315.74,
+    "stderr": ""
+   },
+   "asm": "\t.file\t\"prog.c\"\n\t.intel_syntax noprefix\n\t.text\n\t.p2align 4\n\t.globl\talways_bigger\n\t.type\talways_bigger, @function\nalways_bigger:\n\tendbr64\n\tmov\teax, 1\n\tret\n\t.size\talways_bigger, .-always_bigger\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.LC0:\n\t.string\t\"INT_MAX + 1 > INT_MAX ? %d\\n\"\n\t.section\t.text.startup,\"ax\",@progbits\n\t.p2align 4\n\t.globl\tmain\n\t.type\tmain, @function\nmain:\n\tendbr64\n\tsub\trsp, 24\n\tlea\trsi, .LC0[rip]\n\tmov\tDWORD PTR 12[rsp], 2147483647\n\tmov\tedi, DWORD PTR 12[rsp]\n\tcall\talways_bigger\n\tmov\tedi, 2\n\tmov\tedx, eax\n\txor\teax, eax\n\tcall\t__printf_chk@PLT\n\txor\teax, eax\n\tadd\trsp, 24\n\tret\n\t.size\tmain, .-main\n\t.ident\t\"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n\t.section\t.note.GNU-stack,\"\",@progbits\n\t.section\t.note.gnu.property,\"a\"\n\t.align 8\n\t.long\t1f - 0f\n\t.long\t4f - 1f\n\t.long\t5\n0:\n\t.string\t\"GNU\"\n1:\n\t.align 8\n\t.long\t0xc0000002\n\t.long\t3f - 2f\n2:\n\t.long\t0x3\n3:\n\t.align 8\n4:",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 7.274,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 1\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": [
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.441
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.058
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 5.915
+    }
+   ]
+  },
+  {
+   "compiler": "gcc",
+   "opt": "O3",
+   "compile": {
+    "ok": true,
+    "command": "gcc -O3 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_gcc_O3 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 311.806,
+    "stderr": ""
+   },
+   "asm": "\t.file\t\"prog.c\"\n\t.intel_syntax noprefix\n\t.text\n\t.p2align 4\n\t.type\talways_bigger.constprop.0, @function\nalways_bigger.constprop.0:\n\tmov\teax, 1\n\tret\n\t.size\talways_bigger.constprop.0, .-always_bigger.constprop.0\n\t.p2align 4\n\t.globl\talways_bigger\n\t.type\talways_bigger, @function\nalways_bigger:\n\tendbr64\n\tmov\teax, 1\n\tret\n\t.size\talways_bigger, .-always_bigger\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.LC0:\n\t.string\t\"INT_MAX + 1 > INT_MAX ? %d\\n\"\n\t.section\t.text.startup,\"ax\",@progbits\n\t.p2align 4\n\t.globl\tmain\n\t.type\tmain, @function\nmain:\n\tendbr64\n\tsub\trsp, 24\n\tlea\trsi, .LC0[rip]\n\tmov\tedi, 2\n\tmov\tDWORD PTR 12[rsp], 2147483647\n\tmov\teax, DWORD PTR 12[rsp]\n\tcall\talways_bigger.constprop.0\n\tmov\tedx, eax\n\txor\teax, eax\n\tcall\t__printf_chk@PLT\n\txor\teax, eax\n\tadd\trsp, 24\n\tret\n\t.size\tmain, .-main\n\t.ident\t\"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\"\n\t.section\t.note.GNU-stack,\"\",@progbits\n\t.section\t.note.gnu.property,\"a\"\n\t.align 8\n\t.long\t1f - 0f\n\t.long\t4f - 1f\n\t.long\t5\n0:\n\t.string\t\"GNU\"\n1:\n\t.align 8\n\t.long\t0xc0000002\n\t.long\t3f - 2f\n2:\n\t.long\t0x3\n3:\n\t.align 8\n4:",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 5.118,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 1\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": [
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 8.707
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 7.759
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.576
+    }
+   ]
+  },
+  {
+   "compiler": "clang",
+   "opt": "O0",
+   "compile": {
+    "ok": true,
+    "command": "clang -O0 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_clang_O0 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 515.786,
+    "stderr": ""
+   },
+   "asm": "\t.text\n\t.intel_syntax noprefix\n\t.file\t\"prog.c\"\n\t.globl\talways_bigger                   # -- Begin function always_bigger\n\t.p2align\t4, 0x90\n\t.type\talways_bigger,@function\nalways_bigger:                          # @always_bigger\n# %bb.0:\n\tpush\trbp\n\tmov\trbp, rsp\n\tmov\tdword ptr [rbp - 4], edi\n\tmov\teax, dword ptr [rbp - 4]\n\tadd\teax, 1\n\tcmp\teax, dword ptr [rbp - 4]\n\tsetg\tal\n\tand\tal, 1\n\tmovzx\teax, al\n\tpop\trbp\n\tret\n.Lfunc_end0:\n\t.size\talways_bigger, .Lfunc_end0-always_bigger\n                                        # -- End function\n\t.globl\tmain                            # -- Begin function main\n\t.p2align\t4, 0x90\n\t.type\tmain,@function\nmain:                                   # @main\n# %bb.0:\n\tpush\trbp\n\tmov\trbp, rsp\n\tsub\trsp, 16\n\tmov\tdword ptr [rbp - 4], 0\n\tmov\tdword ptr [rbp - 8], 2147483647\n\tmov\teax, dword ptr [rbp - 8]\n\tmov\tdword ptr [rbp - 12], eax\n\tmov\tedi, dword ptr [rbp - 12]\n\tcall\talways_bigger\n\tmov\tesi, eax\n\tlea\trdi, [rip + .L.str]\n\tmov\tal, 0\n\tcall\tprintf@PLT\n\txor\teax, eax\n\tadd\trsp, 16\n\tpop\trbp\n\tret\n.Lfunc_end1:\n\t.size\tmain, .Lfunc_end1-main\n                                        # -- End function\n\t.type\t.L.str,@object                  # @.str\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.L.str:\n\t.asciz\t\"INT_MAX + 1 > INT_MAX ? %d\\n\"\n\t.size\t.L.str, 28\n\n\t.ident\t\"Ubuntu clang version 18.1.3 (1ubuntu1)\"\n\t.section\t\".note.GNU-stack\",\"\",@progbits\n\t.addrsig\n\t.addrsig_sym always_bigger\n\t.addrsig_sym printf",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 6.254,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 0\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "adf8c8939e739186ac503de63440734fc931442e138cc384ce86677194e6546a",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": [
+    {
+     "stdout_sha256": "adf8c8939e739186ac503de63440734fc931442e138cc384ce86677194e6546a",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.839
+    },
+    {
+     "stdout_sha256": "adf8c8939e739186ac503de63440734fc931442e138cc384ce86677194e6546a",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.482
+    },
+    {
+     "stdout_sha256": "adf8c8939e739186ac503de63440734fc931442e138cc384ce86677194e6546a",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 8.147
+    }
+   ]
+  },
+  {
+   "compiler": "clang",
+   "opt": "O2",
+   "compile": {
+    "ok": true,
+    "command": "clang -O2 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_clang_O2 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 599.133,
+    "stderr": ""
+   },
+   "asm": "\t.text\n\t.intel_syntax noprefix\n\t.file\t\"prog.c\"\n\t.globl\talways_bigger                   # -- Begin function always_bigger\n\t.p2align\t4, 0x90\n\t.type\talways_bigger,@function\nalways_bigger:                          # @always_bigger\n# %bb.0:\n\tmov\teax, 1\n\tret\n.Lfunc_end0:\n\t.size\talways_bigger, .Lfunc_end0-always_bigger\n                                        # -- End function\n\t.globl\tmain                            # -- Begin function main\n\t.p2align\t4, 0x90\n\t.type\tmain,@function\nmain:                                   # @main\n# %bb.0:\n\tpush\trax\n\tmov\tdword ptr [rsp + 4], 2147483647\n\tmov\teax, dword ptr [rsp + 4]\n\tlea\trdi, [rip + .L.str]\n\tmov\tesi, 1\n\txor\teax, eax\n\tcall\tprintf@PLT\n\txor\teax, eax\n\tpop\trcx\n\tret\n.Lfunc_end1:\n\t.size\tmain, .Lfunc_end1-main\n                                        # -- End function\n\t.type\t.L.str,@object                  # @.str\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.L.str:\n\t.asciz\t\"INT_MAX + 1 > INT_MAX ? %d\\n\"\n\t.size\t.L.str, 28\n\n\t.ident\t\"Ubuntu clang version 18.1.3 (1ubuntu1)\"\n\t.section\t\".note.GNU-stack\",\"\",@progbits\n\t.addrsig",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 6.741,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 1\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": [
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 8.849
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 8.616
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 5.996
+    }
+   ]
+  },
+  {
+   "compiler": "clang",
+   "opt": "O3",
+   "compile": {
+    "ok": true,
+    "command": "clang -O3 -std=gnu17 -Wall -Wextra -fno-diagnostics-color prog.c -o bin_clang_O3 -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 697.615,
+    "stderr": ""
+   },
+   "asm": "\t.text\n\t.intel_syntax noprefix\n\t.file\t\"prog.c\"\n\t.globl\talways_bigger                   # -- Begin function always_bigger\n\t.p2align\t4, 0x90\n\t.type\talways_bigger,@function\nalways_bigger:                          # @always_bigger\n# %bb.0:\n\tmov\teax, 1\n\tret\n.Lfunc_end0:\n\t.size\talways_bigger, .Lfunc_end0-always_bigger\n                                        # -- End function\n\t.globl\tmain                            # -- Begin function main\n\t.p2align\t4, 0x90\n\t.type\tmain,@function\nmain:                                   # @main\n# %bb.0:\n\tpush\trax\n\tmov\tdword ptr [rsp + 4], 2147483647\n\tmov\teax, dword ptr [rsp + 4]\n\tlea\trdi, [rip + .L.str]\n\tmov\tesi, 1\n\txor\teax, eax\n\tcall\tprintf@PLT\n\txor\teax, eax\n\tpop\trcx\n\tret\n.Lfunc_end1:\n\t.size\tmain, .Lfunc_end1-main\n                                        # -- End function\n\t.type\t.L.str,@object                  # @.str\n\t.section\t.rodata.str1.1,\"aMS\",@progbits,1\n.L.str:\n\t.asciz\t\"INT_MAX + 1 > INT_MAX ? %d\\n\"\n\t.size\t.L.str, 28\n\n\t.ident\t\"Ubuntu clang version 18.1.3 (1ubuntu1)\"\n\t.section\t\".note.GNU-stack\",\"\",@progbits\n\t.addrsig",
+   "asm_truncated": false,
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 11.609,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 1\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+    "stderr": "",
+    "stderr_truncated": false
+   },
+   "reruns": [
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.135
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 10.916
+    },
+    {
+     "stdout_sha256": "8e4c356f32937be27a032f7c1111024f01f9c5ccd5df0311031e8f50f1cdf270",
+     "exit_code": 0,
+     "signal": null,
+     "timed_out": false,
+     "duration_ms": 6.06
+    }
+   ]
+  }
+ ],
+ "sanitizers": [
+  {
+   "name": "asan+ubsan",
+   "compile": {
+    "ok": true,
+    "command": "clang -O1 -g -fno-omit-frame-pointer -fsanitize=undefined,address -std=gnu17 -w -fno-diagnostics-color prog.c -o bin_asan_ubsan -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 1150.471,
+    "stderr": ""
+   },
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 118.778,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 0\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "adf8c8939e739186ac503de63440734fc931442e138cc384ce86677194e6546a",
+    "stderr": "prog.c:8:14: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'\n    #0 0x63c1807db769 in always_bigger /work/prog.c:8:14\n    #1 0x63c1807db78e in main /work/prog.c:14:44\n    #2 0x7e7a21d061c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)\n    #3 0x7e7a21d0628a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)\n    #4 0x63c180702344 in _start (/work/bin_asan_ubsan+0x2b344) (BuildId: 71f49ae2c12d7521b29419a418ce46a0f4953790)\n\nSUMMARY: UndefinedBehaviorSanitizer: signed-integer-overflow prog.c:8:14 \n",
+    "stderr_truncated": false
+   }
+  },
+  {
+   "name": "msan",
+   "compile": {
+    "ok": true,
+    "command": "clang -O0 -g -fno-omit-frame-pointer -fsanitize=memory -fsanitize-memory-track-origins=2 -std=gnu17 -w -fno-diagnostics-color prog.c -o bin_msan -lm",
+    "exit_code": 0,
+    "timed_out": false,
+    "duration_ms": 946.474,
+    "stderr": ""
+   },
+   "run": {
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "output_limit_exceeded": false,
+    "cpu_limit_exceeded": false,
+    "duration_ms": 12.248,
+    "stdout": "INT_MAX + 1 > INT_MAX ? 0\n",
+    "stdout_truncated": false,
+    "stdout_sha256": "adf8c8939e739186ac503de63440734fc931442e138cc384ce86677194e6546a",
+    "stderr": "",
+    "stderr_truncated": false
+   }
+  }
+ ],
+ "remarks": {
+  "command": "clang -O3 -gline-tables-only -std=gnu17 -w -fno-diagnostics-color -Rpass=.* -Rpass-missed=.* -Rpass-analysis=.* -c prog.c -o /dev/null",
+  "ok": true,
+  "raw": "prog.c:14:44: remark: 'always_bigger' not inlined into 'main' because it should never be inlined (cost=never): noinline function attribute [-Rpass-missed=inline]\n   14 |     printf(\"INT_MAX + 1 > INT_MAX ? %d\\n\", always_bigger(x));\n      |                                            ^\nprog.c:7:1: remark: X86 DAG->DAG Instruction Selection: Function: always_bigger: MI Instruction count changed from 0 to 3; Delta: 3 [-Rpass-analysis=size-info]\n    7 | __attribute__((noinline)) int always_bigger(int x) {\n      | ^\nprog.c:7:1: remark: Peephole Optimizations: Function: always_bigger: MI Instruction count changed from 3 to 2; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:7:1: remark: 0 stack bytes in function 'always_bigger' [-Rpass-analysis=prologepilog]\nprog.c:7:1: remark: \nFunction: always_bigger [-Rpass-analysis=stack-frame-layout]\nprog.c:8:5: remark: BasicBlock: \n: 2\n [-Rpass-analysis=asm-printer]\n    8 |     return x + 1 > x;\n      |     ^\nprog.c:7:1: remark: 2 instructions in function [-Rpass-analysis=asm-printer]\n    7 | __attribute__((noinline)) int always_bigger(int x) {\n      | ^\nprog.c:11:1: remark: X86 DAG->DAG Instruction Selection: Function: main: MI Instruction count changed from 0 to 17; Delta: 17 [-Rpass-analysis=size-info]\n   11 | int main(void) {\n      | ^\nprog.c:11:1: remark: Merge disjoint stack slots: Function: main: MI Instruction count changed from 17 to 15; Delta: -2 [-Rpass-analysis=size-info]\nprog.c:11:1: remark: Remove dead machine instructions: Function: main: MI Instruction count changed from 15 to 14; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:11:1: remark: Peephole Optimizations: Function: main: MI Instruction count changed from 14 to 13; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:11:1: remark: Register Coalescer: Function: main: MI Instruction count changed from 13 to 11; Delta: -2 [-Rpass-analysis=size-info]\nprog.c:11:1: remark: Virtual Register Rewriter: Function: main: MI Instruction count changed from 11 to 10; Delta: -1 [-Rpass-analysis=size-info]\nprog.c:11:1: remark: 8 stack bytes in function 'main' [-Rpass-analysis=prologepilog]\nprog.c:11:1: remark: Prologue/Epilogue Insertion & Frame Finalization: Function: main: MI Instruction count changed from 10 to 12; Delta: 2 [-Rpass-analysis=size-info]\nprog.c:11:1: remark: \nFunction: main\nOffset: [SP-4], Type: Variable, Align: 4, Size: 4 [-Rpass-analysis=stack-frame-layout]\nprog.c:11:5: remark: BasicBlock: \n: 10\n [-Rpass-analysis=asm-printer]\n   11 | int main(void) {\n      |     ^\nprog.c:11:1: remark: 10 instructions in function [-Rpass-analysis=asm-printer]\n   11 | int main(void) {\n      | ^\n",
+  "truncated": false
+ },
+ "timings_ms": {
+  "compile": 1770,
+  "run": 314
+ }
+}
